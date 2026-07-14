@@ -54,7 +54,6 @@ export function CustomSelect({
   const handleSelect = (val: string) => {
     if (value === undefined) setInternalSelected(val);
     if (onChange) onChange(val);
-    if (onBlur) onBlur(); // Trigger validation on select
     setIsOpen(false);
   };
 
