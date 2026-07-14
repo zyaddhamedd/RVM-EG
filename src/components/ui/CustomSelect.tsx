@@ -130,7 +130,10 @@ export function CustomSelect({
                 key={opt.value}
                 role="option"
                 aria-selected={selected === opt.value}
-                onClick={() => handleSelect(opt.value)}
+                onMouseDown={(e) => {
+                  e.preventDefault();
+                  handleSelect(opt.value);
+                }}
                 className={`px-4 py-3 cursor-pointer transition-colors min-h-[44px] flex items-center ${
                   selected === opt.value ? 'bg-neutral-800 text-[#CCFF00]' : 'text-white hover:bg-neutral-800'
                 }`}

@@ -18,7 +18,7 @@ export function WhoWeAreLookingFor() {
         <motion.div
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
-          viewport={{ once: false, amount: 0.1 }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="absolute inset-0 bg-[#CCFF00] origin-left z-0"
         />
@@ -26,7 +26,7 @@ export function WhoWeAreLookingFor() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.1 }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           >
             <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-black mb-2 relative z-20">Who We&apos;re Looking For</h2>
@@ -44,7 +44,7 @@ export function WhoWeAreLookingFor() {
               key={index}
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              viewport={{ once: false, margin: "-50px" }}
+              viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.7, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
               className="group relative px-8 py-4 rounded-full border border-neutral-800 bg-neutral-950/50 backdrop-blur-sm text-neutral-300 text-lg md:text-xl font-medium overflow-hidden transition-all duration-500 hover:border-[#CCFF00]/50 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgb(204,255,0,0.1)] cursor-default"
             >

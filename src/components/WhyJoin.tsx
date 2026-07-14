@@ -34,7 +34,7 @@ export function WhyJoin() {
         <motion.div
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
-          viewport={{ once: false, amount: 0.1 }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="absolute inset-0 bg-[#CCFF00] origin-left z-0"
         />
@@ -42,7 +42,7 @@ export function WhyJoin() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.1 }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           >
             <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-black relative z-20">Why Join RVM</h2>
@@ -59,7 +59,7 @@ export function WhyJoin() {
                 key={index}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, margin: "-100px" }}
+                viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
                 className="group relative p-8 md:p-10 rounded-3xl bg-neutral-950 border border-neutral-900 transition-all duration-500 hover:border-[#CCFF00]/40"
               >

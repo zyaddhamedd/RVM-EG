@@ -199,7 +199,7 @@ export function ApplicationForm() {
         <motion.div
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
-          viewport={{ once: false, amount: 0.1 }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="absolute inset-0 bg-[#CCFF00] origin-left z-0"
         />
@@ -207,7 +207,7 @@ export function ApplicationForm() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.1 }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           >
             <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-black mb-2 relative z-20">Creator Application</h2>
@@ -222,7 +222,7 @@ export function ApplicationForm() {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, margin: "-100px" }}
+          viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
           <form ref={formRef} onSubmit={handleSubmit} className="space-y-6 md:space-y-8" noValidate>
@@ -350,51 +350,62 @@ export function ApplicationForm() {
               </div>
 
               <div>
-                <label htmlFor="preferred_niches" className={labelClasses}>Preferred Niches *</label>
-                <p className="text-xs text-neutral-500 mb-3">Hold Ctrl/Cmd to select multiple.</p>
-                <select 
-                  id="preferred_niches"
-                  name="preferred_niches" 
-                  multiple 
-                  value={formData.preferred_niches}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  aria-invalid={touched.preferred_niches && !!errors.preferred_niches}
-                  aria-describedby={touched.preferred_niches && errors.preferred_niches ? "preferred_niches-error" : undefined}
-                  className={`w-full bg-neutral-950 border rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-1 transition-colors h-32 md:h-40 ${
-                    touched.preferred_niches && errors.preferred_niches ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'border-neutral-800 focus:border-[#CCFF00] focus:ring-[#CCFF00]'
-                  }`}
-                >
-                  <option value="Beauty" className="py-1">Beauty</option>
-                  <option value="Skincare" className="py-1">Skincare</option>
-                  <option value="Fashion" className="py-1">Fashion</option>
-                  <option value="Lifestyle" className="py-1">Lifestyle</option>
-                  <option value="E-commerce" className="py-1">E-commerce</option>
-                  <option value="Men's Grooming" className="py-1">Men's Grooming</option>
-                </select>
+                <label className={labelClasses}>Preferred Niches *</label>
+                <div className="flex flex-wrap gap-3 mt-2">
+                  {["Beauty", "Skincare", "Fashion", "Lifestyle", "E-commerce", "Men's Grooming"].map((niche) => {
+                    const isSelected = formData.preferred_niches.includes(niche);
+                    return (
+                      <button
+                        key={niche}
+                        type="button"
+                        onClick={() => {
+                          const newSelection = isSelected
+                            ? formData.preferred_niches.filter(n => n !== niche)
+                            : [...formData.preferred_niches, niche];
+                          handleChange({ name: 'preferred_niches', value: newSelection });
+                        }}
+                        onBlur={() => handleBlur('preferred_niches')}
+                        className={`px-4 py-2 rounded-full border text-sm font-medium transition-all duration-300 ${
+                          isSelected 
+                            ? 'bg-[#CCFF00] border-[#CCFF00] text-black shadow-[0_0_15px_rgb(204,255,0,0.3)]' 
+                            : 'bg-neutral-950 border-neutral-800 text-neutral-400 hover:border-[#CCFF00]/50 hover:text-white'
+                        }`}
+                      >
+                        {niche}
+                      </button>
+                    );
+                  })}
+                </div>
                 {renderError('preferred_niches')}
               </div>
 
               <div>
-                <label htmlFor="languages" className={labelClasses}>Languages Spoken *</label>
-                <select 
-                  id="languages"
-                  name="languages" 
-                  multiple 
-                  value={formData.languages}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  aria-invalid={touched.languages && !!errors.languages}
-                  aria-describedby={touched.languages && errors.languages ? "languages-error" : undefined}
-                  className={`w-full bg-neutral-950 border rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-1 transition-colors h-28 ${
-                    touched.languages && errors.languages ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'border-neutral-800 focus:border-[#CCFF00] focus:ring-[#CCFF00]'
-                  }`}
-                >
-                  <option value="Arabic" className="py-1">Arabic</option>
-                  <option value="English" className="py-1">English</option>
-                  <option value="French" className="py-1">French</option>
-                  <option value="Other" className="py-1">Other</option>
-                </select>
+                <label className={labelClasses}>Languages Spoken *</label>
+                <div className="flex flex-wrap gap-3 mt-2">
+                  {["Arabic", "English", "French", "Other"].map((lang) => {
+                    const isSelected = formData.languages.includes(lang);
+                    return (
+                      <button
+                        key={lang}
+                        type="button"
+                        onClick={() => {
+                          const newSelection = isSelected
+                            ? formData.languages.filter(l => l !== lang)
+                            : [...formData.languages, lang];
+                          handleChange({ name: 'languages', value: newSelection });
+                        }}
+                        onBlur={() => handleBlur('languages')}
+                        className={`px-4 py-2 rounded-full border text-sm font-medium transition-all duration-300 ${
+                          isSelected 
+                            ? 'bg-[#CCFF00] border-[#CCFF00] text-black shadow-[0_0_15px_rgb(204,255,0,0.3)]' 
+                            : 'bg-neutral-950 border-neutral-800 text-neutral-400 hover:border-[#CCFF00]/50 hover:text-white'
+                        }`}
+                      >
+                        {lang}
+                      </button>
+                    );
+                  })}
+                </div>
                 {renderError('languages')}
               </div>
             </div>
