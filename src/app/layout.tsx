@@ -4,12 +4,8 @@ import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
-const defaultUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : "http://localhost:3000";
-
 export const metadata: Metadata = {
-  metadataBase: new URL(defaultUrl),
+  metadataBase: new URL("https://join-rvm-eg.vercel.app"),
   title: "RVM EG | Creator Application",
   description: "Apply to become an RVM EG Creator. Create authentic content and work with leading brands.",
   openGraph: {
@@ -19,10 +15,10 @@ export const metadata: Metadata = {
     siteName: "RVM EG",
     images: [
       {
-        url: "/assets/logorvm.png",
+        url: "/assets/og-rvm.jpg",
         width: 1200,
         height: 630,
-        alt: "RVM EG Logo",
+        alt: "RVM EG Creator Network",
       },
     ],
     type: "website",
@@ -31,7 +27,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "RVM EG | Creator Application",
     description: "Apply to become an RVM EG Creator. Create authentic content and work with leading brands.",
-    images: ["/assets/logorvm.png"],
+    images: ["/assets/og-rvm.jpg"],
   },
 };
 
